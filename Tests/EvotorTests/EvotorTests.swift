@@ -6,7 +6,7 @@ final class EvotorTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(Evotor().text, "Hello, World!")
+        //XCTAssertEqual(Evotor().text, "Hello, World!")
     }
 
 
