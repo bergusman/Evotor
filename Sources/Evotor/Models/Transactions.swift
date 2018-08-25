@@ -2,8 +2,19 @@ import Foundation
 
 public enum Transaction: Decodable {
     case unknown
+    
+    case openSession(OpenSession)
+    case closeSession(CloseSession)
+    
+    case documentOpen(DocumentOpen)
+    case registerPosition(RegisterPosition)
+    case discountPosition(DiscountPosition)
+    case discountDocumentPosition(DiscountDocumentPosition)
     case discountDocument(DiscountDocument)
     case positionTax(PositionTax)
+    case payment(Payment)
+    case documentCloseFprint(DocumentCloseFprint)
+    case documentClose(DocumentClose)
     
     public struct DiscountDocument: Decodable {
         public let type: String
@@ -93,6 +104,8 @@ public extension Transaction {
 
         switch type {
         case "DISCOUNT_DOCUMENT":
+            self = .discountDocument(try DiscountDocument(from: decoder))
+        case "DISCOUNT_POSITION":
             self = .discountDocument(try DiscountDocument(from: decoder))
         case "POSITION_TAX":
             self = .positionTax(try PositionTax(from: decoder))
